@@ -1,0 +1,293 @@
+/* =========================================================
+   NextGen Desk Training — course player page
+   (loads after styles.css)
+   ========================================================= */
+
+main { position: relative; z-index: 1; }
+
+.nav__course {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nav__back { display: inline-flex; align-items: center; gap: 8px; }
+
+/* ---------- Layout ---------- */
+.learn {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 28px;
+  padding-top: 32px;
+  padding-bottom: 80px;
+}
+.learn__main { flex: 999 1 620px; min-width: 0; }
+.learn__side { flex: 1 1 320px; min-width: 0; border-radius: 24px; padding: 22px; position: sticky; top: 110px; }
+
+/* ---------- Player ---------- */
+.player { padding: 10px; border-radius: 24px; }
+.player__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #07060C;
+}
+.player__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* Covers Drive's "open in new window" button so viewers stay on the page */
+.player__shield {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 72px;
+  height: 64px;
+  z-index: 2;
+  background: transparent;
+}
+
+.player__empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(124,58,237,.35), transparent 55%),
+    linear-gradient(135deg, #17122A, #0B0912);
+  color: var(--muted);
+}
+.player__empty-icon {
+  width: 64px; height: 64px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 20px;
+  background: var(--surface-neu-2);
+  box-shadow: var(--neu-raised);
+  color: #C4B5FD;
+}
+.player__empty-icon svg { width: 28px; height: 28px; }
+.player__empty strong { display: block; font-family: var(--font-display); font-size: 20px; color: var(--text); }
+
+/* ---------- Lesson heading ---------- */
+.lesson-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 26px;
+}
+.lesson-head__text { flex: 1 1 320px; min-width: 0; }
+.lesson-head__kicker {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--accent-light);
+}
+.lesson-tag {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(251,191,36,.12);
+  border: 1px solid rgba(251,191,36,.35);
+  color: #FCD34D;
+  font-size: 11px;
+  letter-spacing: .08em;
+}
+.lesson-head__title {
+  margin: 10px 0 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(26px, 3.4vw, 36px);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+.lesson-head__desc { margin: 12px 0 0; font-size: 16px; line-height: 1.65; color: var(--muted); max-width: 640px; }
+
+.complete-btn { gap: 10px; }
+.complete-btn svg { width: 18px; height: 18px; opacity: .5; }
+.complete-btn.is-done {
+  background: var(--accent);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(124,58,237,.45);
+}
+.complete-btn.is-done svg { opacity: 1; }
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.pager .btn { border: 0; cursor: pointer; font-family: inherit; }
+.pager .btn--ghost { border: 1px solid rgba(255,255,255,.14); }
+.pager .btn[disabled] { opacity: .35; cursor: not-allowed; transform: none; }
+.complete-btn { cursor: pointer; font-family: inherit; }
+
+/* ---------- Sidebar ---------- */
+.side__title { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 18px; }
+.side__progress { display: flex; justify-content: space-between; margin: 14px 0 10px; font-size: 14px; color: var(--muted); }
+.side__progress strong { color: var(--text); font-family: var(--font-display); }
+
+.bar {
+  height: 10px;
+  border-radius: 999px;
+  background: #120F1C;
+  box-shadow: inset 3px 3px 6px rgba(0,0,0,.6), inset -2px -2px 5px rgba(140,110,220,.08);
+  overflow: hidden;
+}
+.bar__fill {
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #7C3AED, #C4B5FD);
+  box-shadow: 0 0 14px rgba(167,139,250,.6);
+  transition: width .6s cubic-bezier(.2,.8,.2,1);
+}
+
+.lesson-list { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.lesson-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease;
+}
+.lesson-item:hover { background: rgba(255,255,255,.05); color: var(--text); }
+.lesson-item.is-active { background: rgba(167,139,250,.14); border-color: rgba(167,139,250,.32); color: var(--text); }
+
+.lesson-item__dot {
+  width: 30px; height: 30px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 10px;
+  background: var(--surface-neu-2);
+  box-shadow: 3px 3px 7px rgba(0,0,0,.55), -2px -2px 6px rgba(140,110,220,.10);
+  font-size: 12px; font-weight: 800; color: #C4B5FD;
+}
+.lesson-item__dot svg { width: 15px; height: 15px; }
+.lesson-item.is-done .lesson-item__dot { background: var(--accent); color: #fff; box-shadow: none; }
+.lesson-item__label { flex: 1; min-width: 0; line-height: 1.35; }
+.lesson-item__soon { font-size: 11px; font-weight: 700; color: var(--muted-2); white-space: nowrap; }
+
+.link-btn {
+  margin-top: 14px;
+  min-height: 40px;
+  padding: 8px 4px;
+  border: 0;
+  background: none;
+  color: var(--muted-2);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.link-btn:hover { color: var(--text); text-decoration: underline; }
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: 28px; z-index: 100;
+  transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+  padding: 14px 20px; border-radius: 16px;
+  background: rgba(24,19,38,.9); border: 1px solid rgba(167,139,250,.35);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.5);
+  font-weight: 700; font-size: 15px;
+  transition: opacity .25s ease, transform .25s ease;
+}
+.toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+[hidden] { display: none !important; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+  .learn__side { position: static; }
+}
+@media (max-width: 760px) {
+  .nav__course { display: none; }
+  .nav__back { display: inline-flex; }
+  .learn { padding-top: 20px; gap: 22px; }
+  .player { padding: 6px; border-radius: 18px; }
+  .player__frame { border-radius: 13px; }
+  .complete-btn { width: 100%; }
+  .pager .btn { flex: 1; padding-left: 12px; padding-right: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar__fill, .toast { transition: none; }
+}
+
+/* =========================================================
+   Responsive polish — course page
+   ========================================================= */
+.lesson-head__title { text-wrap: balance; }
+.pager .btn { white-space: nowrap; }
+
+/* Tablet: list sits under the player, so use two columns */
+@media (min-width: 640px) and (max-width: 999px) {
+  .lesson-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 12px; }
+}
+@media (max-width: 999px) {
+  .learn__main, .learn__side { flex-basis: 100%; }
+}
+
+@media (max-width: 760px) {
+  .learn { padding-top: 16px; padding-bottom: 56px; }
+  .learn__side { padding: 18px 14px; border-radius: 20px; }
+  .lesson-head { margin-top: 20px; gap: 14px; }
+  .pager { margin-top: 22px; padding-top: 20px; gap: 10px; }
+  .lesson-item { padding: 8px; gap: 10px; }
+}
+@media (max-width: 420px) {
+  .pager .btn { min-height: 46px; padding: 12px 10px; font-size: 15px; gap: 6px; }
+  .pager .btn svg { width: 16px; height: 16px; }
+  .lesson-head__kicker { font-size: 12px; letter-spacing: .1em; }
+  .player__empty { gap: 10px; font-size: 14px; }
+  .player__empty-icon { width: 48px; height: 48px; border-radius: 14px; }
+  .player__empty strong { font-size: 17px; }
+}
+@media (min-width: 640px) and (max-width: 999px) {
+  .lesson-list { grid-template-rows: repeat(6, auto); grid-auto-flow: column; }
+}
+
+/* Top-right "open in new tab" button over the player */
+a.player__shield { display: block; cursor: pointer; border-radius: 0 16px 0 12px; }
+a.player__shield:focus-visible { outline: 2px solid var(--accent-light); outline-offset: -4px; }
+
+/* Phones: cover Google's "open in new window" icon with a NextGen Desk badge (not clickable) */
+@media (max-width: 760px) {
+  a.player__shield {
+    top: 0; right: 0; width: 96px; height: 56px;
+    border-radius: 0 0 0 14px;
+    background: rgba(10,8,18,.92) url("assets/nextgen-desk-logo-sm.png") center / 60px auto no-repeat;
+    box-shadow: 0 4px 12px rgba(0,0,0,.4);
+    cursor: default;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Make sure the cover reaches Google's icon on every screen */
+.player__shield { width: 96px; height: 60px; }

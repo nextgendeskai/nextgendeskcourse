@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Watch | NextGen Desk</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Manrope:wght@500;600;700&display=swap">
+  <style>
+    :root { --bg: #07060C; --text: #F4F2FA; --muted: #B4ADC9; --accent: #7C3AED; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); font-family: 'Manrope', system-ui, sans-serif; }
+    body { display: flex; flex-direction: column; }
+    .bar {
+      display: flex; align-items: center; gap: 14px;
+      padding: 10px 16px; min-height: 60px;
+      background: #0E0B17; border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .bar img { height: 36px; width: auto; flex-shrink: 0; }
+    .bar__title { flex: 1; min-width: 0; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bar__close {
+      flex-shrink: 0; display: inline-flex; align-items: center; gap: 8px;
+      min-height: 40px; padding: 8px 14px; border-radius: 12px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14);
+      color: var(--text); font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; text-decoration: none;
+    }
+    .bar__close:hover { background: rgba(255,255,255,.12); }
+    .bar__close svg { width: 16px; height: 16px; }
+    .stage { position: relative; flex: 1; display: flex; align-items: center; justify-content: center; padding: 12px; }
+    .frame { position: relative; width: 100%; max-width: calc((100vh - 84px) * 16 / 9); aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; }
+    .frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .shield { position: absolute; top: 0; right: 0; width: 72px; height: 64px; z-index: 2; }
+    .msg { color: var(--muted); text-align: center; padding: 40px 20px; }
+    @media (max-width: 600px) { .bar__title { font-size: 14px; } .bar img { height: 30px; } .stage { padding: 0; } .frame { border-radius: 0; } }
+  </style>
+</head>
+<body oncontextmenu="return false;">
+  <header class="bar">
+    <img src="assets/nextgen-desk-logo-sm.png" alt="NextGen Desk">
+    <div class="bar__title" id="title">NextGen Desk Training</div>
+    <button type="button" class="bar__close" id="closeBtn">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      Close
+    </button>
+  </header>
+  <main class="stage" id="stage"></main>
+
+  <script src="course-data.js"></script>
+  <script>
+    (function () {
+      var C = window.COURSE || { lessons: [] };
+      var n = parseInt((location.hash.match(/lesson-(\d+)/) || [])[1], 10);
+      var l = C.lessons[n - 1];
+      var stage = document.getElementById('stage');
+      if (l && l.driveId) {
+        document.title = l.title + ' | NextGen Desk';
+        document.getElementById('title').textContent = 'Lesson ' + n + ': ' + l.title;
+        stage.innerHTML = '<div class="frame"><iframe src="https://drive.google.com/file/d/' + encodeURIComponent(l.driveId) +
+          '/preview" allow="autoplay; fullscreen" allowfullscreen referrerpolicy="no-referrer" title=""></iframe>' +
+          '<div class="shield" aria-hidden="true"></div></div>';
+        stage.querySelector('iframe').title = l.title;
+      } else {
+        stage.innerHTML = '<p class="msg">This video isn’t available yet.</p>';
+      }
+      // Close the tab (or go back to the course if the browser won't close it)
+      document.getElementById('closeBtn').addEventListener('click', function () {
+        window.close();
+        setTimeout(function () { location.href = 'course.html' + (n ? '#lesson-' + n : ''); }, 150);
+      });
+      document.addEventListener('keydown', function (e) {
+        var k = (e.key || '').toLowerCase();
+        if ((e.ctrlKey || e.metaKey) && (k === 's' || k === 'u')) e.preventDefault();
+      });
+    })();
+  </script>
+</body>
+</html>
