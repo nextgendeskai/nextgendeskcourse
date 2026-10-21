@@ -39,6 +39,7 @@
         </a>
         <div class="nav__links">
           <a href="#course" class="nav__link">Course</a>
+          <a href="#qa" class="nav__link nav__link--qa">Q&amp;A videos</a>
           <a href="#how" class="nav__link">How it works</a>
           <a href="#faq" class="nav__link">FAQ</a>
           <a href="course.html" class="btn btn--primary nav__cta">Go to course</a>
@@ -61,7 +62,10 @@
               Start the course
               <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
             </a>
-            <a href="#how" class="btn btn--ghost">How it works</a>
+            <a href="course.html#qa-1" class="btn btn--ghost">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+              Q&amp;A videos
+            </a>
           </div>
         </div>
 
@@ -127,6 +131,20 @@
         </div>
       </section>
 
+      <!-- ================= Q&A VIDEOS ================= -->
+      <section id="qa" class="qa-home">
+        <div class="qa-home__panel reveal">
+          <div class="qa-home__head">
+            <div class="eyebrow">Q&amp;A videos</div>
+            <h2 class="section-title">Stuck on something? Watch a Q&amp;A video.</h2>
+            <p class="section-intro">Short, quick answers to the questions clients ask most. Find your issue below and watch the fix.</p>
+          </div>
+          <div class="qa-home__grid" id="qaHomeGrid">
+            <a class="qa-cta qa-cta--wide" href="course.html#qa-1">Open the Q&amp;A videos</a>
+          </div>
+        </div>
+      </section>
+
       <!-- ================= WHO IT'S FOR ================= -->
       <section id="fit" class="compare">
         <div class="compare__panel reveal">
@@ -178,7 +196,7 @@
           <div class="faq__intro reveal">
             <div class="eyebrow">FAQ</div>
             <h2 class="section-title">Questions, answered</h2>
-            <p class="section-intro">Can't find what you need? Email us at <a href="mailto:[YOUR EMAIL]">[YOUR EMAIL]</a>.</p>
+            <p class="section-intro">Can't find what you need? Email us at <a href="mailto:nextgendeskai@gmail.com">nextgendeskai@gmail.com</a>.</p>
           </div>
           <div class="faq__list reveal">
             <details class="faq__item">
@@ -222,14 +240,34 @@
       <div class="footer__links">
         <a href="#">Privacy</a>
         <a href="#">Terms</a>
-        <a href="mailto:[YOUR EMAIL]">Contact</a>
+        <a href="mailto:nextgendeskai@gmail.com">Contact</a>
       </div>
     </footer>
   </div>
 
 </div>
 
+<script src="course-data.js"></script>
 <script>
+  // Q&A video list: built from course-data.js, so new Q&A videos show up here automatically
+  (function () {
+    var qa = (window.COURSE && window.COURSE.qa) || [];
+    var grid = document.getElementById('qaHomeGrid');
+    if (!qa.length) { document.getElementById('qa').hidden = true; return; }
+    function esc(t) { return String(t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+    var PLAY = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>';
+    var ARROW = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>';
+    var html = qa.map(function (q, i) {
+      return '<a class="qa-item neu" href="course.html#qa-' + (i + 1) + '">' +
+        '<span class="qa-item__icon">' + PLAY + '</span>' +
+        '<span class="qa-item__title">' + esc(q.title) + '</span>' +
+        '<span class="qa-item__go">' + ARROW + '</span></a>';
+    }).join('');
+    // The closing button fills the empty cell when the count is odd, otherwise spans the row
+    html += '<a class="qa-cta' + (qa.length % 2 === 0 ? ' qa-cta--wide' : '') + '" href="course.html#qa-1">Open all Q&amp;A videos ' + ARROW + '</a>';
+    grid.innerHTML = html;
+  })();
+
   // Fade sections in as they scroll into view
   (function () {
     var items = document.querySelectorAll('.reveal');
