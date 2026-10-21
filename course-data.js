@@ -9,6 +9,13 @@
      driveId      (optional)  the Google Drive file ID of the video
                               (the long code in .../file/d/THIS-PART/view)
    A lesson with an empty driveId shows a "Video coming soon" screen.
+
+   Q&A videos (window.COURSE.qa, below the lessons) work the same way,
+   but use a Loom video instead of Google Drive:
+     title        (required)
+     loomId       the code at the end of the Loom link
+                  (loom.com/share/THIS-PART)
+   Q&A videos are extra help: they don't count toward course progress.
    ========================================================= */
 
 window.COURSE = {
@@ -27,5 +34,14 @@ window.COURSE = {
     { title: "Social Planner: How To Post From One Platform",                 driveId: "1vYSZDAfFckq4HVtjNBtgo2OsB9OpLo7o" }, // social plannerr.mp4
     { title: "Common Issues and Solutions",
       description: "Links mentioned in this video will be added here.",      driveId: "1W9OvzY8XPnnurVDVMDatdthB2NmVxV04" }  // common issues.mp4
+  ],
+  qa: [
+    { title: "How To Quickly Check That New Lead Automations Are Set Up Properly", description: "Use this when a client says their automations aren't working.", loomId: "b0a4c3385bd944b4a407eebec179b6f8" },
+    { title: "How To Add Users",                                                    loomId: "28ff5b3b4bba435fa5d3ae63684e63f9" },
+    { title: "Meta Leads Not Syncing",                                              loomId: "85b8ac05508f432b9bc1bbbd1b176a84" },
+    { title: "Phone Settings / Forwarding Issues",                                  loomId: "099df18e9278490fa86a03204e109ee5" },
+    { title: "How To Connect Leads From Other Platforms",                           loomId: "032fe3c31d6c41b69396678b0f035f97" },
+    { title: "How To Remove Leads From Automations",                                loomId: "9be130a122d34261a577a57577d07e78" },
+    { title: "How To Send Bulk Messages / Emails To Your Customer List",            loomId: "2b5b4ffb11604f628c01ffc9895db278" }
   ]
 };

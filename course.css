@@ -291,3 +291,13 @@ a.player__shield:focus-visible { outline: 2px solid var(--accent-light); outline
 
 /* Make sure the cover reaches Google's icon on every screen */
 .player__shield { width: 96px; height: 60px; }
+
+/* ---------- Q&A section (sidebar) ---------- */
+.side__qa { margin-top: 26px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.08); }
+.side__qa[hidden] { display: none; }
+.side__title--sub { font-size: 16px; }
+.side__note { margin: 6px 0 0; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.side__qa .lesson-list { margin-top: 14px; }
+@media (min-width: 640px) and (max-width: 999px) {
+  .lesson-list--qa { grid-template-rows: repeat(4, auto); }
+}
