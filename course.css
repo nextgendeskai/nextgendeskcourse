@@ -292,12 +292,24 @@ a.player__shield:focus-visible { outline: 2px solid var(--accent-light); outline
 /* Make sure the cover reaches Google's icon on every screen */
 .player__shield { width: 96px; height: 60px; }
 
-/* ---------- Q&A section (sidebar) ---------- */
-.side__qa { margin-top: 26px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.08); }
-.side__qa[hidden] { display: none; }
-.side__title--sub { font-size: 16px; }
-.side__note { margin: 6px 0 0; font-size: 13px; line-height: 1.5; color: var(--muted); }
-.side__qa .lesson-list { margin-top: 14px; }
-@media (min-width: 640px) and (max-width: 999px) {
-  .lesson-list--qa { grid-template-rows: repeat(4, auto); }
+/* ---------- Q&A link card (course sidebar) and Q&A page ---------- */
+.side__note { margin: 6px 0 0; font-size: 14px; line-height: 1.5; color: var(--muted); }
+.side__qa-link {
+  display: flex; align-items: center; gap: 14px;
+  margin-top: 22px; padding: 14px 16px; border-radius: 18px;
+  background: linear-gradient(135deg, rgba(124,58,237,.34), rgba(124,58,237,.14));
+  border: 1px solid rgba(167,139,250,.38);
+  color: var(--text); text-decoration: none;
+  transition: transform .18s ease, border-color .18s ease;
 }
+.side__qa-link:hover { color: var(--text); transform: translateY(-2px); border-color: rgba(167,139,250,.65); }
+.side__qa-link__icon { flex: none; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 13px; background: rgba(167,139,250,.22); color: var(--accent-pale); }
+.side__qa-link__icon svg { width: 17px; height: 17px; margin-left: 2px; }
+.side__qa-link__text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.side__qa-link__text strong { font-family: var(--font-display); font-weight: 700; font-size: 16px; }
+.side__qa-link__text small { font-size: 13px; color: var(--muted); }
+.side__qa-link__arrow { flex: none; width: 18px; height: 18px; color: var(--accent-pale); }
+.side__course-link { display: block; margin-top: 18px; font-size: 14px; font-weight: 600; }
+.nav__link--qa { color: var(--accent-pale); background: rgba(167,139,250,.12); }
+.nav__link--qa:hover { background: rgba(167,139,250,.22); }
+@media (prefers-reduced-motion: reduce) { .side__qa-link { transition: none; } }
