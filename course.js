@@ -73,17 +73,6 @@
   }
 
   /* ---------- Player ---------- */
-  function loadDriveVideo(i) {
-    var l = items[i];
-    // Drive's preview player: plays the video without a download link
-    $('playerFrame').innerHTML =
-      '<iframe src="https://drive.google.com/file/d/' + encodeURIComponent(l.driveId) + '/preview"' +
-      ' title="' + esc(l.title) + '" allow="autoplay; fullscreen" allowfullscreen' +
-      ' referrerpolicy="no-referrer"></iframe>' +
-      '<a class="player__shield" href="watch.html#lesson-' + (i + 1) + '" target="_blank" rel="noopener"' +
-      ' title="Open video in a new tab" aria-label="Open this video in a new tab"></a>';
-  }
-
   function showLesson(i, push) {
     current = Math.max(0, Math.min(items.length - 1, i));
     var l = items[current];
@@ -92,20 +81,20 @@
     var hasVideo = isQA ? !!l.loomId : !!l.driveId;
 
     var frame = $('playerFrame');
-    if (!isQA && l.driveId && l.thumb) {
-      // Show the cover first; the video loads when the student clicks it
-      frame.innerHTML =
-        '<button type="button" class="player__poster" data-play="' + current + '" aria-label="Play video: ' + esc(l.title) + '">' +
-          '<img src="' + esc(l.thumb) + '" alt="" draggable="false">' +
-        '</button>';
-    } else if (isQA && l.loomId) {
+    if (isQA && l.loomId) {
       // Loom's embed player
       frame.innerHTML =
         '<iframe src="https://www.loom.com/embed/' + encodeURIComponent(l.loomId) +
         '?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"' +
         ' title="' + esc(l.title) + '" allow="autoplay; fullscreen" allowfullscreen></iframe>';
     } else if (!isQA && l.driveId) {
-      loadDriveVideo(current);
+      // Drive's preview player: plays the video without a download link
+      frame.innerHTML =
+        '<iframe src="https://drive.google.com/file/d/' + encodeURIComponent(l.driveId) + '/preview"' +
+        ' title="' + esc(l.title) + '" allow="autoplay; fullscreen" allowfullscreen' +
+        ' referrerpolicy="no-referrer"></iframe>' +
+        '<a class="player__shield" href="watch.html#lesson-' + (current + 1) + '" target="_blank" rel="noopener"' +
+        ' title="Open video in a new tab" aria-label="Open this video in a new tab"></a>';
     } else {
       frame.innerHTML =
         '<div class="player__empty">' +
@@ -190,12 +179,6 @@
     updateProgress();
     renderList();
     toast('Progress reset');
-  });
-
-  // Clicking the cover loads the video
-  $('playerFrame').addEventListener('click', function (e) {
-    var p = e.target.closest('.player__poster');
-    if (p) loadDriveVideo(+p.dataset.play);
   });
 
   // On phones the corner button is just a logo badge: tapping it does nothing
