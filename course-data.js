@@ -22,13 +22,13 @@ window.COURSE = {
   id: "nextgen-leads-training",
   title: "NextGen Desk Training",
   lessons: [
-    { title: "Quick Overview",                        tag: "Watch first",     driveId: "1qdGCIFUuy8XsERh2bNrOWncPJXRnHAfT" }, // overview.mp4
+    { title: "Quick Overview",                        tag: "Watch first",     driveId: "1qQEz5qoV_3n32UAWFaA5zP4oIcOwVdmW" }, // updated video (replaced overview.mp4)
     { title: "Settings Set Up",                       tag: "Must watch",      driveId: "10-vanGIuQKbT7UuWVKWMqdpxrTpFIZlB" }, // settings set up.mp4
     { title: "New Leads Set Up (Facebook Ads)",                               driveId: "1CLoPS9DeNZ6utCSF9BvuvT-jaUp_k45v" }, // new leads set up.mp4
-    { title: "Reactivation, Upsell & Referrals",      tag: "Implement these", driveId: "1ef1q3TqwAiS0lbZScB5mnZXluQU_LXQt" }, // Reactivation, Upsell....mp4
+    { title: "Reactivation, Upsell & Referrals",      tag: "Implement these", driveId: "1epfqhmT2Q1FyHAktOp3nF62lNSZzSutX" }, // updated video (replaced Reactivation, Upsell....mp4)
     { title: "How To Import Leads",                                           driveId: "1UjAQg4OgPLfH99Y9UokZvRdYpTEIjhX8" }, // how to import leads.mp4
     { title: "Automation Training",                                           driveId: "1yn2f5rHhQeqa6UI2K5tXeTZdA55ydxJ3" }, // automation training.mp4
-    { title: "Which Automations Should You Turn On?",                         driveId: "1o_coRkdiZqBMwQMmE2yqqJOqsLq4uqOu" }, // which automation should you....mp4
+    { title: "Which Automations Should You Turn On?",                         driveId: "1eRnQeD1IhztH6v6kQR64MA27twVn2ovi" }, // updated video (replaced which automation should you....mp4)
     { title: "Pest Control AI Setup",                                         driveId: "1tNqaa8ajbP6Y0tlXXpGSe_Z3zDalQyZd" }, // pest control ai setting up.mp4
     { title: "Lead Management",                                               driveId: "1jmb1FG3QMNp5zLmBN8c9x_Pwn8w70LXZ" }, // lead management.mp4
     { title: "Social Planner: How To Post From One Platform",                 driveId: "1vYSZDAfFckq4HVtjNBtgo2OsB9OpLo7o" }, // social plannerr.mp4
